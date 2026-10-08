@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 
+import java.util.ArrayList;
+
 public class Inventory
 {
-    
     private ArrayList<Book> mainInventory; // stores books currently available in the library
     private ArrayList<Book> borrowedBooks; // stores books that have been borrowed
 
@@ -13,13 +14,14 @@ public class Inventory
         borrowedBooks = new ArrayList<Book>();
     }
 
-    // adds a new book to the main inventory 
+    // adds a new book to the main inventory
     public void addBook(Book book)
     {
         mainInventory.add(book);
     }
 
-    public boolean borrowBook(int id) // borrows a book by moving it from available inventory to the borrowed books list
+    // borrows a book by moving it from available inventory to the borrowed books list
+    public boolean borrowBook(int id)
     {
         for (int i = 0; i < mainInventory.size(); i++)
         {
@@ -36,7 +38,8 @@ public class Inventory
         return false; // book not found
     }
 
-    public boolean returnBook(int id) // returns a borrowed book back to main inventory
+    // returns a borrowed book back to main inventory
+    public boolean returnBook(int id)
     {
         for (int i = 0; i < borrowedBooks.size(); i++)
         {
@@ -48,9 +51,52 @@ public class Inventory
                 borrowedBooks.remove(i);
                 return true;
             }
-        }   
+        }
 
         return false; // book was not found in borrowed inventory
+    }
+
+    // prints all books currently available in the library
+    public void printAll()
+    {
+        if (mainInventory.isEmpty())
+        {
+            System.out.println("No books in inventory.");
+            return;
+        }
+
+        for (Book book : mainInventory)
+        {
+            book.printBookInfo();
+        }
+    }
+
+    // searches for books using a full or partial title match
+    // search is case-insensitive
+    public void searchByTitle(String title)
+    {
+        boolean found = false;
+
+        for (Book book : mainInventory)
+        {
+            if (book.getTitle().toLowerCase()
+                    .contains(title.toLowerCase()))
+            {
+                book.printBookInfo();
+                found = true;
+            }
+        }
+
+        if (!found)
+        {
+            System.out.println("No matching book found.");
+        }
+    }
+
+    // returns the number of books currently available
+    public int getMainInventoryCount()
+    {
+        return mainInventory.size();
     }
 }
 

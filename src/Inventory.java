@@ -21,17 +21,19 @@ public class Inventory
 
     public boolean borrowBook(int id) // borrows a book by moving it from available inventory to the borrowed books list
     {
-        for (Book book : mainInventory)
+        for (int i = 0; i < mainInventory.size(); i++)
         {
+            Book book = mainInventory.get(i);
+
             if (book.getId() == id)
             {
                 borrowedBooks.add(book);
-                mainInventory.remove(book);
+                mainInventory.remove(i);
                 return true;
             }
         }
 
-        return false; // book not found 
+        return false; // book not found
     }
 
     public boolean returnBook(int id) // returns a borrowed book back to main inventory

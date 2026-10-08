@@ -20,7 +20,7 @@ public class LibrarySystem
                 int choice = input.nextInt();
                 input.nextLine();
 
-                // menu choices call separarte helper methods
+                // menu choices call separart helper methods
                 if (choice == 1) 
                 {
                     addBookMenu(input, inventory);
@@ -106,7 +106,7 @@ public class LibrarySystem
         }
         catch (InputMismatchException e)
         {
-            // handles invalid number input while addint a book 
+            // handles invalid number input while adding a book 
             System.out.println("\nInvalid input. Book was not added.");
             input.nextLine();
         }
@@ -164,7 +164,7 @@ public class LibrarySystem
         }
     }
 
-    // seraches available books by full or partial title
+    // searches available books by full or partial title
     public static void searchBookMenu(Scanner input, Inventory inventory)
     {
         System.out.print("Enter full or partial title: ");
